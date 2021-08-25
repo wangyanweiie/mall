@@ -1,23 +1,34 @@
 <template>
   <div id="home">
-    <NavBar class="home-nav"><div slot="center">购物街</div></NavBar>
+    <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+    <home-swiper :banners="banners"></home-swiper>
   </div>
 </template>
 
-
 <script>
 import NavBar from 'components/common/navbar/NavBar'
+import HomeSwiper from './childComs/HomeSwiper.vue'
+
 import {getHomeMultidata} from 'network/home'
 
 export default {
   name: "Home",
   components:{
     NavBar,
+    HomeSwiper,
+  },
+  data(){
+    return{
+      banners: [],
+      recommends:[]
+    }
   },
   created(){
     //请求多个数据:调用getHomeMultidata获得的返回值是Promise对象
     getHomeMultidata().then(res => {
-      console.log(res);
+      //箭头函数自身没有this,它会查找离它最近的作用域的this; 即created的this,就是当前组件对象;
+      this.banners = res.data.banner.list;
+      this.recommends = res.data.recommend.list;
     })
   }
 }

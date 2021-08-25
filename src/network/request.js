@@ -1,7 +1,7 @@
 //导入axios模块
 import axios from 'axios'
 //**************网络请求封装+拦截器******************/
-export function request5(config) {
+export function request(config) {
   //1.创建axios的实例
   const instance = axios.create({
     baseURL: 'http://152.136.185.210:7878/api/m5',
