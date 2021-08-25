@@ -1,7 +1,8 @@
 <template>
 <swiper>
+      <!-- 使用v-for 需要:key保证唯一性？ -->
       <swiper-item v-for="(item,index) in banners" :key="index">
-        <!-- 要使用item变量中的属性值作为链接与图片路径,需要使用v-bind动态绑定 -->
+        <!-- 要使用item变量中的属性值作为链接与图片路径,需要使用v-bind:动态绑定 -->
         <a :href="item.link">
           <img :src="item.image" alt="">
         </a>

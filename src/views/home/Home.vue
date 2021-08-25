@@ -8,7 +8,6 @@
 <script>
 import NavBar from 'components/common/navbar/NavBar'
 import HomeSwiper from './childComs/HomeSwiper.vue'
-
 import {getHomeMultidata} from 'network/home'
 
 export default {
