@@ -16,7 +16,7 @@
       <img slot="item-icon-active" src="~assets/img/tabbar/shopcart_active.svg" alt="">
       <div slot="item-text">购物车</div>
     </TabBarItem>
-    <TabBarItem path="/profile">
+    <TabBarItem path="/profile" activeColor="#C09553">
       <img slot="item-icon" src="~assets/img/tabbar/profile.svg" alt="">
       <img slot="item-icon-active" src="~assets/img/tabbar/profile_active.svg" alt="">
       <div slot="item-text">我的</div>
