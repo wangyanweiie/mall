@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style scoped>
+.feature{
+  /*图片最右边有一条黑线不需要显示*/
+  margin-right: -1px;
+}
 .feature img{
   width: 100%;
 }
