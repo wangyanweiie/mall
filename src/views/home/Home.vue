@@ -94,8 +94,6 @@ export default {
         this.goods[type].page += 1;
       })
     }
-
-
   }
 }
 </script>
