@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <good-list-item v-for="(item,index) in goods" :key="index" :goods-item="item"></good-list-item class="">
+    <good-list-item v-for="(item,index) in goods" :key="index" :goods-item="item"></good-list-item>
   </div>
 </template>
 
