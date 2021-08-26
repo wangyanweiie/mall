@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<div class="wrapper"  ref="wrapper">
   <ul class="content">
     <li>分类的列表</li>
     <li>分类的列表</li>
@@ -106,7 +106,17 @@
 </template>
 
 <script>
+//BetterScroll 2.0需要配合插件使用具体功能
 import BScroll from '@better-scroll/core'
+//导入BS的插件
+import PullDown from '@better-scroll/pull-down'
+import PullUp from '@better-scroll/pull-up'
+import ScrollBar from '@better-scroll/scroll-bar'
+//静态安装插件
+BScroll.use(PullDown)
+BScroll.use(PullUp)
+BScroll.use(ScrollBar)
+
 export default {
   name: "Category",
   data(){
@@ -116,8 +126,13 @@ export default {
   },
   //要在组件模板挂载到DOM之后才能操作,故需要在mounted函数中,created函数中无效;
   mounted(){
-    let wrapper = document.querySelector('.wrapper');
-    this.scroll = new BScroll(wrapper,{});
+    //this.scroll = new BScroll(this.$refs.wrapper,{});
+    this.scroll = new BScroll(document.querySelector('.wrapper'),{
+      probeType: 3
+    });
+    this.scroll.on('scroll',(position) => {
+      console.log(position);
+    })
   }
 }
 </script>
