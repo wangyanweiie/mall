@@ -1,22 +1,22 @@
 <template>
   <TabBar>
     <!--路径使用别名-->
-    <TabBarItem path="/home" activeColor="green">
+    <TabBarItem path="/home" activeColor="#ff5777">
       <img slot="item-icon" src="~assets/img/tabbar/home.svg" alt="">
       <img slot="item-icon-active" src="~assets/img/tabbar/home_active.svg" alt="">
       <div slot="item-text">首页</div>
     </TabBarItem>
-    <TabBarItem path="/category" activeColor="blue">
+    <TabBarItem path="/category" activeColor="#ff5777">
       <img slot="item-icon" src="~assets/img/tabbar/category.svg" alt="">
       <img slot="item-icon-active" src="~assets/img/tabbar/category_active.svg" alt="">
       <div slot="item-text">分类</div>
     </TabBarItem>
-    <TabBarItem path="/cart" activeColor="purple">
+    <TabBarItem path="/cart" activeColor="#ff5777">
       <img slot="item-icon" src="~assets/img/tabbar/shopcart.svg" alt="">
       <img slot="item-icon-active" src="~assets/img/tabbar/shopcart_active.svg" alt="">
       <div slot="item-text">购物车</div>
     </TabBarItem>
-    <TabBarItem path="/profile" activeColor="#C09553">
+    <TabBarItem path="/profile" activeColor="#ff5777">
       <img slot="item-icon" src="~assets/img/tabbar/profile.svg" alt="">
       <img slot="item-icon-active" src="~assets/img/tabbar/profile_active.svg" alt="">
       <div slot="item-text">我的</div>

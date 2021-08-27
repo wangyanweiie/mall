@@ -38,4 +38,10 @@
     height: 75px;
     margin-bottom: 10px;
   }
+  .recommend span{
+    /*设置标题只在一行显示,溢出部分显示省略号*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 </style>

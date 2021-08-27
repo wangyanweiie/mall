@@ -4,6 +4,9 @@ import router from './router/index'
 
 Vue.config.productionTip = false
 
+//在vue的原型上添加vue实例作为事件总线bus:防抖处理
+//Vue.prototype.$bus = new Vue({})
+
 new Vue({
   router,
   render: h => h(App),
