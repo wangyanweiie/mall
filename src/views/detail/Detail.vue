@@ -1,7 +1,10 @@
 <template>
   <div id="detail">
-    <detail-nav-bar @titleClick='titleClick'></detail-nav-bar>
-    <scroll class="content" ref="scroll">
+    <detail-nav-bar @titleClick='titleClick' ref="nav"></detail-nav-bar>
+    <scroll class="content"
+            ref="scroll"
+            @scroll="contentScroll"
+            :probe-tybe='3'>
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
@@ -15,8 +18,8 @@
 
 <script>
 //导入子组件
-import Scroll from 'components/common/scroll/Scroll'
-import DetailNavBar from './children/DetailNavBar'
+import  Scroll from 'components/common/scroll/Scroll'
+import  DetailNavBar from './children/DetailNavBar'
 import  DetailSwiper from './children/DetailSwiper'
 import  DetailBaseInfo from './children/DetailBaseInfo'
 import  DetailShopInfo from './children/DetailShopInfo'
@@ -47,14 +50,15 @@ export default {
     return {
       iid: 0,
       topImages: [],
-      goods:{},
-      shop:{},
-      detailInfo:{},
-      paramInfo:{},
-      commentInfo:{},
-      recommendInfo:[],
-      themeTopYs:[],
-      getThemeTopY:null
+      goods: {},
+      shop: {},
+      detailInfo: {},
+      paramInfo: {},
+      commentInfo: {},
+      recommendInfo: [],
+      themeTopYs: [],
+      getThemeTopY: null,
+      currentIndex: 0
     }
   },
   created(){
@@ -124,9 +128,23 @@ export default {
        3.给getThemeTopY赋初值,在详情页图片加载完成后调用进行防抖
       ************************************************************************/
     },
+    //点击响应:跳转到各个主题记录的offsetTop值
     titleClick(index){
-      //点击跳转到记录的offsetTop
       this.$refs.scroll.scrollTo(0,-this.themeTopYs[index],0);
+    },
+    //获取Y值与各个主题的offsetTop值进行对比
+    contentScroll(position){
+      const positionY = -position.y;
+      const length = this.themeTopYs.length
+      for(let i=0; i< length; i++){
+        if(this.currentIndex != i && ((i < length-1
+        && positionY > this.themeTopYs[i] && positionY < this.themeTopYs[i+1])
+        || (i === length-1 && positionY > this.themeTopYs[i]))){
+          this.currentIndex = i;
+          console.log(this.currentIndex);
+          this.$refs.nav.currentIndex = this.currentIndex;
+        }
+      }
     }
   }
 }
