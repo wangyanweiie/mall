@@ -30,7 +30,7 @@ export default {
   flex-wrap: wrap;
   /*子元素之间平均分配父元素剩余的距离*/
   justify-content: space-around;
-  padding: 0 4px;
+  padding:2px 4px;
 }
 
 </style>
