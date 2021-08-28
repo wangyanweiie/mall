@@ -1,7 +1,7 @@
 <template>
   <div class="goodsitem" @click="itemClick">
-    <img :src="goodsItem.show.img" alt="">
-    <!--<img :src="goodsItem.show.img" alt="" @load="imageLoad">-->
+    <!-- <img :src="showImage" alt=""> -->
+    <img :src="showImage" alt="" @load="imageLoad">
     <div class="goodsinfo">
       <p>{{goodsItem.title}}</p>
       <span class="price">￥ {{goodsItem.price}}</span>
@@ -24,12 +24,22 @@ export default {
       }
     }
   },
+  computed:{
+    showImage(){
+      //逻辑或运算: 左边为真则不看右边,左边为假则判断右边(换位报错？)
+      return this.goodsItem.image || this.goodsItem.show.img;
+    }
+  },
   methods:{
     //1.防抖处理: 发送图片加载完成的事件
-    /*imageLoad(){
-      this.$bus.$emit('itemImageLoad')
-    }*/
-    //2.监听item点击事件: 实现路由跳转进入商品详情页
+    imageLoad(){
+      if(this.$route.path.indexOf('/home')){
+        this.$bus.$emit('itemImageLoad')
+      }else if(this.$route.path.indexOf('/detail')){
+        this.$bus.$emit('itemImageLoad')
+      }
+    },
+    //2.监听item点击事件: 实现路由跳转并且根据iid进入对应商品的详情页
     itemClick(){
       this.$router.push('/detail/' + this.goodsItem.iid)
     }

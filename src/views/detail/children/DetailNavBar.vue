@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar>
+    <nav-bar class="navbar">
       <div slot="left" class="back" @click="backClick">
         <img src="~assets/img/common/back.svg" alt="">
       </div>
@@ -41,6 +41,11 @@ export default {
 </script>
 
 <style>
+.navbar{
+  position: relative;
+  z-index: 999;
+  background-color: #fff;
+}
 .titles{
   display: flex;
   font-size: 14px;

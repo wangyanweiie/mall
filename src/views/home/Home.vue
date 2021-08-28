@@ -13,13 +13,12 @@
             @scroll='contentScroll'
             :pull-up-load='true'
             @pullingUp='loadMore'>
-      <home-swiper :banners ="banners" @swiperImageLoad='swiperImageLoad'></home-swiper>
+      <home-swiper :banners ="banners" @swiperImageLoad='swiperImageLoad' ref="hSwiper"></home-swiper>
       <recommend-view :recommends ="recommends"></recommend-view>
       <feature-view></feature-view>
       <tab-control :titles="['流行','新款','精选']"
                   @tabClick="tabClick"
                   ref="tabControl02"></tab-control>
-      <!--<good-list :goods="goods[currentType].list"></good-list>-->
       <good-list :goods="showGoods"></good-list>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>  <!--.native 监听直接组件的点击-->
@@ -79,21 +78,21 @@ export default {
     this.getHomeGoods('sell');
   },
   mounted(){
-    //1.事件总线&bus: 监听图片加载完成事件,解决BS1.0可滑动高度不对问题; 2.0可直接使用插件;
+    //1.事件总线&bus: 监听图片加载完成事件(解决BS1.0可滑动高度不对问题; 2.0可直接使用插件)
     //调用防抖处理: 让刷新没有那么频繁
-    /*const refresh = debounce(this.$refs.scroll.refresh,200);
+    const refresh = debounce(this.$refs.scroll.refresh,200);
     this.$bus.$on('itemImageLoad',()=>{
       refresh()
-    })*/
+    })
   },
   computed:{
     showGoods(){
       return this.goods[this.currentType].list;
     },
-    //记录Home页面的状态:在离开当前路由前保存滚动的Y值,当切回当前路由时重新赋值原位置;
+    //记录Home页面的状态:在离开当前路由前保存滚动的Y值,当切回当前路由时重新赋值原位置 ？？
     activated(){
       this.$refs.scroll.scrollTo(0,this.saveY,0);
-      this.$refs.scroll.refresh();    //刷新一下
+      this.$refs.scroll.refresh();
     },
     deactivated(){
       this.saveY = this.$refs.scroll.getScrollY();
@@ -167,12 +166,6 @@ export default {
   /*使用事先在base.css中设置的css变量*/
   background-color: var(--color-tint);
   z-index: 999;
-  /*
-  浏览器使用原生滚动时为了不让导航跟着一起滚动
-  position:fixed;
-  top: 0;
-  left: 0;
-  right: 0;*/
 }
 .content{
   overflow: hidden;

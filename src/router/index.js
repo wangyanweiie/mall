@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-//安装插件
 //路由懒加载
 const Home = () => import('views/home/Home')
 const Category = () => import('views/category/Category')
