@@ -5,6 +5,9 @@
             ref="scroll"
             @scroll="contentScroll"
             :probe-tybe='3'>
+            <ul>
+              <li v-for="(item,index) in $store.state.cartList" :key="index">{{item}}</li>
+            </ul>
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
@@ -178,9 +181,12 @@ export default {
       product.desc = this.goods.desc;
       product.price = this.goods.nowPrice;
       product.iid = this.iid;
-      //2.将商品添加到购物车: vuex修改state需要通过mutations,不能直接修改state的值;
-      //this.$store.cartList.push(product);
-      this.$store.commit("addCart",product)
+      //2.将商品添加到购物车
+      /*vuex修改state需要通过 mutations,不能直接修改state的值;
+      当存在异步以及逻辑判断的操作时需要再经过 actions*/
+      //this.$store.cartList.push(product);      xxx
+      //this.$store.commit("addCart",product);   xxx
+      this.$store.dispatch("addCart",product);
     }
   }
 }
