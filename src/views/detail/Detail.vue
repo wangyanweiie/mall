@@ -5,9 +5,6 @@
             ref="scroll"
             @scroll="contentScroll"
             :probe-tybe='3'>
-            <ul>
-              <li v-for="(item,index) in $store.state.cartList" :key="index">{{item}}</li>
-            </ul>
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
@@ -23,14 +20,14 @@
 
 <script>
 //子组件
-import DetailNavBar from './children/DetailNavBar'
-import DetailSwiper from './children/DetailSwiper'
-import DetailBaseInfo from './children/DetailBaseInfo'
-import DetailShopInfo from './children/DetailShopInfo'
-import DetailGoodsInfo from './children/DetailGoodsInfo'
-import DetailParamInfo from './children/DetailParamInfo'
-import DetailCommentInfo from './children/DetailCommentInfo'
-import DetailBottomBar from './children/DetailBottomBar'
+import DetailNavBar from './childComs/DetailNavBar'
+import DetailSwiper from './childComs/DetailSwiper'
+import DetailBaseInfo from './childComs/DetailBaseInfo'
+import DetailShopInfo from './childComs/DetailShopInfo'
+import DetailGoodsInfo from './childComs/DetailGoodsInfo'
+import DetailParamInfo from './childComs/DetailParamInfo'
+import DetailCommentInfo from './childComs/DetailCommentInfo'
+import DetailBottomBar from './childComs/DetailBottomBar'
 //公共组件
 import Scroll from 'components/common/scroll/Scroll'
 import GoodList from 'components/content/goods/GoodList'  //推荐页复用的首页的商品页
