@@ -197,13 +197,13 @@ export default {
   background-color: #fff;
 }
 .content{
-  height: calc(100% - 44px);
+  /*height: calc(100% - 93px);*/
   /*不显示原生滚动条*/
   overflow: hidden;
-  /* position:absolute;
+  position:absolute;
   top: 44px;
   bottom: 49px;
   right: 0;
-  left: 0; */
+  left: 0;
 }
 </style>
