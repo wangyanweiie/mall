@@ -32,7 +32,7 @@
 
 <style scoped>
   .param-info {
-    padding: 20px 15px;
+    padding: 15px;
     font-size: 14px;
     border-bottom: 5px solid #f2f5f8;
   }
@@ -43,7 +43,7 @@
   }
 
   .param-info table tr {
-    height: 42px;
+    height: 40px;
   }
 
   .param-info table tr td {
@@ -60,7 +60,8 @@
   }
 
   .param-value {
-    color: #eb4868
+    color: #eb4868;
+    font-size: 13px;
   }
 
   .info-img img {

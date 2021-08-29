@@ -17,10 +17,10 @@ export class Goods {
     this.desc = itemInfo.desc;
     this.newPrice = itemInfo.price;
     this.oldPrice = itemInfo.oldPrice;
+    this.nowPrice = itemInfo.lowNowPrice;
     this.discount = itemInfo.discountDesc;
     this.columns = columns;
     this.services = services;
-    this.nowPrice = itemInfo.highNowPrice;
   }
 }
 //商家信息

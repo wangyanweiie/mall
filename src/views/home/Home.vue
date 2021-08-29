@@ -69,6 +69,7 @@ export default {
     }
   },
   created(){
+    console.log("Home")
     //由于起名相同: 使用this是调用methods中封装的方法,直接调用才是调用导入的请求函数;
     //1.请求多个数据列表
     this.getHomeMultidata();

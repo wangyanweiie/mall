@@ -13,30 +13,35 @@
       <detail-comment-info :commentInfo="commentInfo" ref="comment"></detail-comment-info>
       <good-list :goods="recommendInfo" ref="recommend"></good-list>
     </scroll>
+    <detail-bottom-bar @addCart="addToCart"></detail-bottom-bar>
+    <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>  <!--.native 监听直接组件的点击-->
   </div>
 </template>
 
 <script>
-//导入子组件
-import  Scroll from 'components/common/scroll/Scroll'
-import  DetailNavBar from './children/DetailNavBar'
-import  DetailSwiper from './children/DetailSwiper'
-import  DetailBaseInfo from './children/DetailBaseInfo'
-import  DetailShopInfo from './children/DetailShopInfo'
-import  DetailGoodsInfo from './children/DetailGoodsInfo'
-import  DetailParamInfo from './children/DetailParamInfo'
-import  DetailCommentInfo from './children/DetailCommentInfo'
-import  GoodList from 'components/content/goods/GoodList'  //推荐页与商品页相同
-//导入请求
+//子组件
+import DetailNavBar from './children/DetailNavBar'
+import DetailSwiper from './children/DetailSwiper'
+import DetailBaseInfo from './children/DetailBaseInfo'
+import DetailShopInfo from './children/DetailShopInfo'
+import DetailGoodsInfo from './children/DetailGoodsInfo'
+import DetailParamInfo from './children/DetailParamInfo'
+import DetailCommentInfo from './children/DetailCommentInfo'
+import DetailBottomBar from './children/DetailBottomBar'
+//公共组件
+import Scroll from 'components/common/scroll/Scroll'
+import GoodList from 'components/content/goods/GoodList'  //推荐页复用的首页的商品页
+import BackTop from 'components/content/backtop/BackTop'
+//请求
 import {getDetail,Goods,Shop,GoodsParam,getRecommend} from 'network/detail'
-//导入方法
+//方法与混入
 import {debounce} from 'common/utils'
+//import {backTopMixIn} from 'common/mixin'
 
 export default {
   name: 'Detail',
   components:{
     //注册子组件
-    Scroll,
     DetailNavBar,
     DetailSwiper,
     DetailBaseInfo,
@@ -44,8 +49,12 @@ export default {
     DetailGoodsInfo,
     DetailParamInfo,
     DetailCommentInfo,
+    DetailBottomBar,
+    Scroll,
     GoodList,
+    BackTop,
   },
+  //mixins:[backTopMixIn],
   data(){
     return {
       iid: 0,
@@ -58,7 +67,8 @@ export default {
       recommendInfo: [],
       themeTopYs: [],
       getThemeTopY: null,
-      currentIndex: 0
+      currentIndex: 0,
+      isShowBackTop: false
     }
   },
   created(){
@@ -105,6 +115,7 @@ export default {
       this.themeTopYs.push(this.$refs.param.$el.offsetTop - 44);
       this.themeTopYs.push(this.$refs.comment.$el.offsetTop - 44);
       this.themeTopYs.push(this.$refs.recommend.$el.offsetTop - 44);
+      this.themeTopYs.push(Number.MAX_VALUE);
       console.log(this.themeTopYs)
     },200)
   },
@@ -128,23 +139,48 @@ export default {
        3.给getThemeTopY赋初值,在详情页图片加载完成后调用进行防抖
       ************************************************************************/
     },
-    //点击响应:跳转到各个主题记录的offsetTop值
+    //点击跳转到各个主题的offsetTop值
     titleClick(index){
       this.$refs.scroll.scrollTo(0,-this.themeTopYs[index],0);
+    },
+    backClick(){
+      //通过在子组件标签绑定:ref,访问子组件的方法
+      this.$refs.scroll.scrollTo(0,0,500)
     },
     //获取Y值与各个主题的offsetTop值进行对比
     contentScroll(position){
       const positionY = -position.y;
       const length = this.themeTopYs.length
       for(let i=0; i< length; i++){
-        if(this.currentIndex != i && ((i < length-1
-        && positionY > this.themeTopYs[i] && positionY < this.themeTopYs[i+1])
-        || (i === length-1 && positionY > this.themeTopYs[i]))){
+        //1.普通做法
+        /***********************************************************
+        if(this.currentIndex != i &&
+        ((i < length-1 && positionY >= this.themeTopYs[i] && positionY < this.themeTopYs[i+1])
+        || (i === length-1 && positionY >= this.themeTopYs[i])))
+        ************************************************************/
+        //2.添加一个额外的最大值(遍历:length-1即可)
+        if(this.currentIndex != i &&
+        (i < length-1 && positionY >= this.themeTopYs[i] && positionY < this.themeTopYs[i+1]))
+        {
           this.currentIndex = i;
           console.log(this.currentIndex);
           this.$refs.nav.currentIndex = this.currentIndex;
         }
       }
+      //设置BackTop的显示与隐藏的位置 + mixin中的内容
+      this.isShowBackTop = -(position.y) > 1000;
+    },
+    addToCart(){
+      //1.获取购物车需要展示的商品信息
+      const product = {};
+      product.image = this.topImages[0];
+      product.title = this.goods.title;
+      product.desc = this.goods.desc;
+      product.price = this.goods.nowPrice;
+      product.iid = this.iid;
+      //2.将商品添加到购物车: vuex修改state需要通过mutations,不能直接修改state的值;
+      //this.$store.cartList.push(product);
+      this.$store.commit("addCart",product)
     }
   }
 }
@@ -163,7 +199,7 @@ export default {
   overflow: hidden;
   /* position:absolute;
   top: 44px;
-  bottom: 60px;
+  bottom: 49px;
   right: 0;
   left: 0; */
 }
