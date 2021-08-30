@@ -112,9 +112,9 @@ export default {
       //读取商品/参数/评论/推荐距离顶部的高度: offsizeTop
       this.themeTopYs = [];
       this.themeTopYs.push(0);
-      this.themeTopYs.push(this.$refs.param.$el.offsetTop - 44);
-      this.themeTopYs.push(this.$refs.comment.$el.offsetTop - 44);
-      this.themeTopYs.push(this.$refs.recommend.$el.offsetTop - 44);
+      this.themeTopYs.push(this.$refs.param.$el.offsetTop);
+      this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
+      this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
       this.themeTopYs.push(Number.MAX_VALUE);
       console.log(this.themeTopYs)
     },200)

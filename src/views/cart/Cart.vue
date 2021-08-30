@@ -4,6 +4,7 @@
     <scroll class="content" ref="scroll">
       <cart-list></cart-list>
     </scroll>
+    <cart-bottom-bar></cart-bottom-bar>
   </div>
 
 </template>
@@ -11,6 +12,7 @@
 <script>
 //子组件
 import CartList from './childComs/CartList'
+import CartBottomBar from './childComs/CartBottomBar'
 //公共组件
 import NavBar from "components/common/navbar/NavBar"
 import Scroll from 'components/common/scroll/Scroll'
@@ -21,6 +23,7 @@ export default {
   name: "Cart",
   components:{
     CartList,
+    CartBottomBar,
     NavBar,
     Scroll,
   },
@@ -29,8 +32,8 @@ export default {
     //...mapGetters({length:'cartLength'})
     ...mapGetters(['cartLength']),
   },
+  //加入商品后需要重新计算可滚动区域高度
   activated(){
-    //加入商品后需要重新计算可滚动区域高度
     this.$refs.scroll.refresh();
   }
 }
