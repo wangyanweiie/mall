@@ -4,7 +4,7 @@
                 :isChecked="isSelectAll"
                 @checkBtnClick="checkClick">
     </check-button>
-    <span>全选</span>
+    <span class="select-text">全选</span>
     <span class="total-price">合计: ￥{{totalPrice}}</span>
     <span class="calculate" @click="calcClick">去计算({{checkLength}})</span>
   </div>
@@ -79,14 +79,13 @@
 #bottom-bar {
   width: 100%;
   height: 40px;
+  line-height: 40px;
+  color: #888;
   background-color: #eee;
   position: fixed;
   bottom: 49px;
   left: 0;
   right: 0;
-  font-size: 14px;
-  color: #888;
-  line-height: 40px;
   padding-left: 35px;
   box-sizing: border-box;
 }
@@ -97,18 +96,20 @@
   left: 10px;
   top: 13px;
 }
+.select-text{
+  font-size: 15px;
+}
 .total-price {
   margin-left: 15px;
-  font-size: 14px;
+  font-size: 15px;
   color: #666;
 }
 .calculate {
   background-color: orangered;
   color: #fff;
   width: 100px;
-  height: 40px;
+  height: 100%;
   text-align: center;
-  line-height: 40px;
   float: right;
 }
 </style>
