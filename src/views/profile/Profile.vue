@@ -1,4 +1,5 @@
 <template>
+<!-- 没有接口数据只用HTML与CSS写样式 -->
   <div id="profile">
     <nav-bar class="profile-nav"><div slot="center">Supermall</div></nav-bar>
     <scroll class="content" :pull-up-load='true'>
