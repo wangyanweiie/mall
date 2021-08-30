@@ -158,9 +158,9 @@
         // 2.判断最终的距离
         if (this.distance === 0) {
           return
-        } else if (this.distance > 0 && currentMove > this.totalWidth * this.moveRatio) { // 右边移动超过0.5
+        } else if (this.distance > 0 && currentMove > this.totalWidth * this.moveRatio) { //右边移动超过0.5
           this.currentIndex--
-        } else if (this.distance < 0 && currentMove > this.totalWidth * this.moveRatio) { // 向左移动超过0.5
+        } else if (this.distance < 0 && currentMove > this.totalWidth * this.moveRatio) { //向左移动超过0.5
           this.currentIndex++
         }
         // 3.移动到正确的位置

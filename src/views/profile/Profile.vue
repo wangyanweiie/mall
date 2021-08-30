@@ -1,7 +1,7 @@
 <template>
 <!-- 没有接口数据只用HTML与CSS写样式 -->
   <div id="profile">
-    <nav-bar class="profile-nav"><div slot="center">Supermall</div></nav-bar>
+    <nav-bar class="profile-nav"><div slot="center">我的商城</div></nav-bar>
     <scroll class="content" :pull-up-load='true'>
       <!-- 登录注册 -->
       <div class="user-info">
