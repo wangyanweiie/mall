@@ -2,11 +2,11 @@
   <div id="cart-bottom-bar">
     <check-button class="select-all"
                 :isChecked="isSelectAll"
-                @checkBtnClick="checkAllClick">
+                @checkBtnClick="checkClick">
     </check-button>
     <span>全选</span>
     <span class="total-price">合计: ￥{{totalPrice}}</span>
-    <span class="calculate">去计算({{checkLength}})</span>
+    <span class="calculate" @click="calcClick">去计算({{checkLength}})</span>
   </div>
 </template>
 
@@ -49,7 +49,7 @@
 	  },
     methods:{
       //全选按钮点击
-      checkAllClick(){
+      checkClick(){
         //若计算属性isSelectAll的返回值为ture,则代表已经全选,点击全选按钮则全部不选中;
         if(this.isSelectAll){
           //this.cartList.forEach(item => item.checked = false)      // 1.forEach
@@ -63,6 +63,12 @@
           for(let item of this.cartList){
             item.checked = true;
           }
+        }
+      },
+          //点击去计算
+      calcClick(){
+        if(!this.isSelectAll){   //如果一件商品都没有选时点击结算
+          this.$toast.show("请选择要购买的商品")
         }
       }
     }

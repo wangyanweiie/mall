@@ -2,42 +2,7 @@
   <div>
        <scroll class="content" :pull-up-load='true'>
          <ul>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
-           <li>哈哈哈哈</li>
+           <li>我的页面</li>
          </ul>
        </scroll>
   </div>

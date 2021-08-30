@@ -36,6 +36,7 @@ import BackTop from 'components/content/backtop/BackTop'
 import {getDetail,Goods,Shop,GoodsParam,getRecommend} from 'network/detail'
 //方法与混入
 import {debounce} from 'common/utils'
+import {mapActions} from 'vuex'
 //import {backTopMixIn} from 'common/mixin'
 
 export default {
@@ -128,6 +129,8 @@ export default {
     })
   },
   methods:{
+    //mapActions辅助函数: 可以将actions中的方法映射到组件的methods中直接调用
+    ...mapActions(['addCart']),
     //2.监听详情页的图片加载
     goodsImageLoad(){
       //调用防抖:此时形成没有闭包变量不会被保存,执行多次没有意义？？(xx封装mixin)
@@ -178,12 +181,18 @@ export default {
       product.desc = this.goods.desc;
       product.price = this.goods.nowPrice;
       product.iid = this.iid;
-      //2.将商品添加到购物车
+
+      //2.将商品添加到购物车-------(补充: Promise 与 mapActions)
       /*vuex修改state需要通过 mutations,不能直接修改state的值;
       当存在异步以及逻辑判断的操作时需要再经过 actions*/
-      //this.$store.cartList.push(product);      xxx
-      //this.$store.commit("addCart",product);   xxx
-      this.$store.dispatch("addCart",product);
+      //this.$store.cartList.push(product);     xxx
+      //this.$store.commit("addCart",product);  xxx
+      /*this.$store.dispatch("addCart",product).then(res => {
+        console.log(res);
+      });*/
+      this.addCart(product).then(res => {
+        this.$toast.show(res)
+      });
     }
   }
 }
