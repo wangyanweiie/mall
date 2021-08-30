@@ -1,5 +1,5 @@
 <template>
-  <div id="cart-bottom-bar">
+  <div id="bottom-bar">
     <check-button class="select-all"
                 :isChecked="isSelectAll"
                 @checkBtnClick="checkClick">
@@ -76,7 +76,7 @@
 </script>
 
 <style scoped>
-#cart-bottom-bar {
+#bottom-bar {
   width: 100%;
   height: 40px;
   background-color: #eee;

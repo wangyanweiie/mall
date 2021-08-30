@@ -5,6 +5,7 @@ import store from './store'
 import toast from 'components/common/toast/index'
 import FastClick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
+import './assets/icon/iconfont.css'
 
 Vue.config.productionTip = false
 //添加事件总线对象

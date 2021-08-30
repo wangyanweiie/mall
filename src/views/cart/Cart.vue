@@ -46,7 +46,6 @@ export default {
 }
 .nav-bar{
   color: white;
-  font-size: 16px;
   background-color: var(--color-tint);
 }
 .content{
