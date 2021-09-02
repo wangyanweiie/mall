@@ -10,7 +10,7 @@
     <scroll class="content"
             ref='scroll'
             :probe-tybe='3'
-            @scroll='contentScroll'
+            @barScroll='barScroll'
             :pull-up-load='true'
             @pullingUp='loadMore'>
       <home-swiper :banners ="banners" @swiperImageLoad='swiperImageLoad' ref="hSwiper"></home-swiper>
@@ -86,21 +86,22 @@ export default {
       refresh()
     })
   },
+  //记录Home页面的状态:在离开当前路由前保存滚动的Y值,当切回当前路由时重新赋值原位置(写在computed中没有作用)
+  activated(){
+    this.$refs.scroll.refresh();
+    this.$refs.scroll.scrollTo(0,this.saveY,10);
+  },
+  deactivated(){
+    this.saveY = this.$refs.scroll.getScrollY();
+    console.log(this.saveY);
+  },
   computed:{
     showGoods(){
       return this.goods[this.currentType].list;
-    },
-    //记录Home页面的状态:在离开当前路由前保存滚动的Y值,当切回当前路由时重新赋值原位置 ？？
-    activated(){
-      this.$refs.scroll.scrollTo(0,this.saveY,0);
-      this.$refs.scroll.refresh();
-    },
-    deactivated(){
-      this.saveY = this.$refs.scroll.getScrollY();
     }
   },
   methods:{
-    //**************事件监听相关方法***************
+    //*********************事件监听相关方法**********************
     tabClick(index){
       switch(index){
         case 0:
@@ -121,7 +122,7 @@ export default {
       //通过在子组件标签绑定:ref,访问子组件的方法
       this.$refs.scroll.scrollTo(0,0,500)
     },
-    contentScroll(position){
+    barScroll(position){
       //1.设置BackTop的显示与隐藏的位置
       this.isShowBackTop = -(position.y) > 1000;
       //2.设置tabControl是否吸顶
@@ -134,7 +135,7 @@ export default {
       //读取tabControl的offsetTop值: 所有组件都有一个属性$el用于获取组件中的元素
       this.tabOffsetTop = this.$refs.tabControl02.$el.offsetTop;
     },
-    //**************网络请求相关方法****************
+    //*********************网络请求相关方法*********************
     getHomeMultidata(){
       //调用导入的请求函数获得的返回值是Promise对象
       getHomeMultidata().then(res => {

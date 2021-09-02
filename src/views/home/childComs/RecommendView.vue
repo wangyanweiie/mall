@@ -24,9 +24,9 @@
 <style scoped>
   .recommend {
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 14px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     border-bottom: 10px solid #eee;
   }
   .recommend-item {

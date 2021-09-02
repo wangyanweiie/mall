@@ -3,20 +3,18 @@
     <div class="content">
       <slot></slot>
     </div>
-
   </div>
 </template>
 
 <script>
-//BetterScroll(2.0应用)
+//导入BetterScroll(2.0应用)
 import BScroll from '@better-scroll/core'
 //导入插件
-import PullDown from '@better-scroll/pull-down'     //设置下拉
-import PullUp from '@better-scroll/pull-up'         //设置上拉加载
-import ScrollBar from '@better-scroll/scroll-bar'   //设置滚动
-import ObserveDom from "@better-scroll/observe-dom" //设置观察域
+import PullDown from '@better-scroll/pull-down'           //设置下拉
+import PullUp from '@better-scroll/pull-up'               //设置上拉加载
+import ScrollBar from '@better-scroll/scroll-bar'         //设置滚动
+import ObserveDom from "@better-scroll/observe-dom"       //设置观察域
 import ObserveImage from '@better-scroll/observe-image'   //观察图像
-
 //安装插件
 BScroll.use(PullDown)
 BScroll.use(PullUp)
@@ -55,7 +53,7 @@ export default {
     //通过on方法监听滚动的位置,传给Home组件
     if(this.probeTybe ===2 || this.probeTybe ===3){
       this.scroll.on('scroll',(position) => {
-        this.$emit("scroll",position)
+        this.$emit("barScroll",position)
       });
     }
     if(this.pullUpLoad){
@@ -66,7 +64,7 @@ export default {
     }
   },
   methods: {
-    scrollTo(x, y,time=500) {
+    scrollTo(x, y,time) {
       //先判断scroll是否已经挂载完成,挂载完成调用scrollTo方法: 返回到某个位置
       this.scroll && this.scroll.scrollTo(x,y,time);
     },
