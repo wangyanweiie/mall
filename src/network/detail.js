@@ -1,6 +1,7 @@
 //导入网络请求
 import {request} from "network/request";
-//****************详情页接口***************
+
+//******************详情页接口*****************
 export function getDetail(iid){
   return request({
     url:'/detail',
@@ -9,10 +10,10 @@ export function getDetail(iid){
     }
   })
 }
-//将需要的服务器中杂乱的详情页信息先封装在构造函数中
+//将需要的服务器中杂乱的详情页信息先整合封装
 //商品基本信息
-export class Goods {
-  constructor(itemInfo, columns, services) {
+export class Goods {                            //ES6通过class直接构造函数(类)
+  constructor(itemInfo, columns, services) {    //constructor(){}传参
     this.title = itemInfo.title;
     this.desc = itemInfo.desc;
     this.newPrice = itemInfo.price;
@@ -43,7 +44,8 @@ export class GoodsParam {
     this.sizes = rule.tables;
   }
 }
-//****************推荐页接口***************
+
+//*****************推荐页接口*****************
 export function getRecommend() {
   return request({
     url: '/recommend'

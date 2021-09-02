@@ -78,17 +78,16 @@ export default {
     //2.根据id获取服务器中的详情数据
     getDetail(this.iid).then(res => {
       const data = res.result;
-      //console.log(data)
       //顶部轮播图片数据
       this.topImages = data.itemInfo.topImages;
-      //商品信
-      this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
+      //商品信息
+      this.goods = new Goods(data.itemInfo, data.columns, data.shopInfo.services)
       //店铺信息
       this.shop = new Shop(data.shopInfo)
       //商品详情
       this.detailInfo = data.detailInfo
       //参数信息
-      this.paramInfo = new GoodsParam(data.itemParams.info,data.itemParams.rule);
+      this.paramInfo = new GoodsParam(data.itemParams.info, data.itemParams.rule);
       //评论信息
       if (data.rate.list) {
         this.commentInfo = data.rate.list[0];

@@ -35,7 +35,7 @@ export default {
       this.$emit('titleClick',index);
     },
     backClick(){
-      this.$router.back();    //没有页面状态记录？？
+      this.$router.back();
     }
   }
 }
