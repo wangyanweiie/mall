@@ -50,7 +50,7 @@ export default {
   border-bottom: 1px solid #ccc;
 }
 .item-selector {
-  width: 14%;
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
