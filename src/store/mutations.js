@@ -10,8 +10,8 @@ export default {
     payload.count++;
   },
   [ADD_TO_CART](state,payload){
-    payload.count = 1;            //记录新添加的商品数量
-    payload.checked = false;      //新添加的商品默认是否选中
+    payload.count = 1;            //count属性: 记录新添加的商品数量 !
+    payload.checked = false;      //checked属性: 记录新添加的商品是否选中的默认状态 !!
     state.cartList.push(payload);
   }
 }
