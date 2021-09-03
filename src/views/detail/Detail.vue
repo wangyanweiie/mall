@@ -201,7 +201,6 @@ export default {
 #detail{
   height: 100vh;
   position: relative;
-  z-index: 999;
   background-color: #fff;
 }
 .content{
