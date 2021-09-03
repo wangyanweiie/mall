@@ -34,9 +34,9 @@ export default {
     //1.防抖处理: 发送图片加载完成的事件
     imageLoad(){
       if(this.$route.path.indexOf('/home')){
-        this.$bus.$emit('itemImageLoad')
+        this.$bus.$emit('homeImageLoad')
       }else if(this.$route.path.indexOf('/detail')){
-        this.$bus.$emit('itemImageLoad')
+        this.$bus.$emit('detailImageLoad')
       }
     },
     //2.监听item点击事件: 实现路由跳转并且根据iid进入对应商品的详情页

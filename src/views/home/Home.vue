@@ -82,7 +82,7 @@ export default {
     //1.事件总线&bus: 监听图片加载完成事件(解决BS1.0可滑动高度不对问题; 2.0可直接使用插件)
     //调用防抖处理: 让刷新没有那么频繁
     const refresh = debounce(this.$refs.scroll.refresh,200);
-    this.$bus.$on('itemImageLoad',()=>{
+    this.$bus.$on('homeImageLoad',()=>{
       refresh()
     })
   },
