@@ -86,7 +86,8 @@ export default {
       refresh()
     })
   },
-  //记录Home页面的状态:在离开当前路由前保存滚动的Y值,当切回当前路由时重新赋值原位置(写在computed中没有作用)
+  //在路由被keep-alive包裹时拥有activated与deactivated属性;
+  //记录Home页面的状态:在离开当前路由前保存滚动的Y值,当切回当前路由时重新赋值原位置
   activated(){
     this.$refs.scroll.refresh();
     this.$refs.scroll.scrollTo(0,this.saveY,10);
