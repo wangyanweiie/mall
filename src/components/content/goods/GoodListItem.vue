@@ -26,16 +26,17 @@ export default {
   },
   computed:{
     showImage(){
-      //逻辑或运算: 左边为真则不看右边,左边为假则判断右边(换位报错？)
+      //逻辑或运算: 左边为真则不看右边,左边为假则判断右边 (换位报错？)
       return this.goodsItem.image || this.goodsItem.show.img;
     }
   },
   methods:{
-    //1.防抖处理: 发送图片加载完成的事件
+    //1.防抖处理: 分别发送图片加载完成的事件
     imageLoad(){
       if(this.$route.path.indexOf('/home')){
         this.$bus.$emit('homeImageLoad')
-      }else if(this.$route.path.indexOf('/detail')){
+      }
+      else if(this.$route.path.indexOf('/detail')){
         this.$bus.$emit('detailImageLoad')
       }
     },

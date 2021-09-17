@@ -29,7 +29,6 @@ export default {
   },
   computed:{
     //mapGetters辅助函数: 可以将store实例中的getters映射到组件的计算属性computed中;
-    //...mapGetters({length:'cartLength'})
     ...mapGetters(['cartLength']),
   },
   //加入商品后需要重新计算可滚动区域高度

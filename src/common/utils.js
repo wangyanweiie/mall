@@ -1,4 +1,4 @@
-//防抖处理函数
+//防抖处理函数(this指向+传递参数)
 export function debounce(func,delay=200){
   let timer = null;
   return function(...args){

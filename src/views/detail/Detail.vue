@@ -73,9 +73,9 @@ export default {
     }
   },
   created(){
-    //1.保存传入的id
+    //1.保存传入的id,根据id获取服务器中的详情页数据;
     this.iid = this.$route.params.id;
-    //2.根据id获取服务器中的详情页数据
+
     getDetail(this.iid).then(res => {
       const data = res.result;
       this.topImages = data.itemInfo.topImages;                                     //轮播图数据
@@ -94,17 +94,16 @@ export default {
         this.themeTopYs.push(this.$refs.param.$el.offsetTop);
         this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
         this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
-        console.log(this.themeTopYs)
+        //console.log(this.themeTopYs)
       })
     });
     //3.根据id获取服务器中推荐数据
     getRecommend().then(res => {
-      //console.log(res);
       this.recommendInfo = res.data.list;
     })
     //4.给getThemeTopY赋值: 调用防抖返回一个新的函数
+    //读取商品/参数/评论/推荐距离顶部的高度
     this.getThemeTopY = debounce(()=>{
-      //读取商品/参数/评论/推荐距离顶部的高度
       this.themeTopYs = [];
       this.themeTopYs.push(0);
       this.themeTopYs.push(this.$refs.param.$el.offsetTop);
@@ -114,10 +113,10 @@ export default {
     },200)
   },
   mounted(){
-    //调用防抖处理:形成闭包refresh不会消失;
+    //调用防抖处理: 形成闭包refresh不会消失;
     //1.监听推荐页的图片加载(复用goodlistitem)
     const refresh = debounce(this.$refs.scroll.refresh,200);
-    this.$bus.$on('itemImageLoad',()=>{
+    this.$bus.$on('detailImageLoad',()=>{
       refresh()
     })
   },
@@ -126,8 +125,6 @@ export default {
     ...mapActions(['addCart']),
     //2.监听详情页的图片加载
     goodsImageLoad(){
-      //调用防抖:此时形成没有闭包变量不会被保存,执行多次没有意义？？(xx封装mixin)
-      //debounce(this.$refs.scroll.refresh,200);
       this.getThemeTopY();
       /***********************************************************************
        1.在mounted中读取会有undefined,因为虽然已经赋值完毕但浏览器需要时间进行渲染;
@@ -147,8 +144,8 @@ export default {
     barScroll(position){
       const positionY = -position.y;
       const length = this.themeTopYs.length
+      //由于添加了一个额外的最大值(遍历到:length-1即可)
       for(let i=0; i< length; i++){
-        //添加一个额外的最大值(遍历:length-1即可)
         if(this.currentIndex != i &&
         (i < length-1 && positionY >= this.themeTopYs[i] && positionY < this.themeTopYs[i+1]))
         {
@@ -170,16 +167,11 @@ export default {
       product.iid = this.iid;
 
       //2.将商品信息添加store.state中-------(补充: Promise 与 mapActions)
-      /*vuex修改state需要通过 mutations,不能直接修改state的值;
-      当存在异步以及逻辑判断的操作时需要再经过 actions*/
+      //vuex修改state需要通过 mutations,不能直接修改state的值; //而当存在异步与逻辑判断操作时又需要先经过 actions
       //this.$store.cartList.push(product);     xxx
       //this.$store.commit("addCart",product);  xxx
-      /*this.$store.dispatch("addCart",product).then(res => {
-        console.log(res);
-      });*/
-      this.addCart(product).then(res => {
-        this.$toast.show(res)
-      });
+      //this.$store.dispatch("addCart",product).then(res => this.$toast.show(res));  √√
+      this.addCart(product).then(res => this.$toast.show(res));
     }
   }
 }
