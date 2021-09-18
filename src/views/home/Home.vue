@@ -3,10 +3,10 @@
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
     <!--用于吸顶显示: 默认隐藏-->
     <tab-control :titles="['流行','新款','精选']"
-                @tabClick="tabClick"
-                ref="tabControl01"
-                class="tabctrol"
-                v-show="isTabFixed"></tab-control>
+                 @tabClick="tabClick"
+                 ref="tabControl01"
+                 class="tabctrol"
+                 v-show="isTabFixed"></tab-control>
     <scroll class="content"
             ref='scroll'
             :probe-tybe='3'
@@ -17,8 +17,8 @@
       <recommend-view :recommends ="recommends"></recommend-view>
       <feature-view></feature-view>
       <tab-control :titles="['流行','新款','精选']"
-                  @tabClick="tabClick"
-                  ref="tabControl02"></tab-control>
+                   @tabClick="tabClick"
+                   ref="tabControl02"></tab-control>
       <good-list :goods="showGoods"></good-list>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>  <!--.native 监听直接组件的点击-->
@@ -177,6 +177,7 @@ export default {
   right: 0;
 }
 .tabctrol{
+  /* 导航栏固定在顶部占据了40px的高度 */
   position: relative;
   z-index: 999;
 }
