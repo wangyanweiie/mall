@@ -2,9 +2,9 @@
   <div id="cart">
     <nav-bar class="nav-bar"><div slot="center">购物车({{cartLength}})</div></nav-bar>
     <scroll class="content" ref="scroll">
-      <cart-list></cart-list>
+      <cart-list/>
     </scroll>
-    <cart-bottom-bar></cart-bottom-bar>
+    <cart-bottom-bar/>
   </div>
 
 </template>

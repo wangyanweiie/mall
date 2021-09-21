@@ -1,4 +1,4 @@
-//防抖处理函数(this指向+传递参数)
+//防抖处理函数 (this指向+传递参数)
 export function debounce(func,delay=200){
   let timer = null;
   return function(...args){
@@ -9,7 +9,7 @@ export function debounce(func,delay=200){
   }
 }
 
-//日期格式化
+//日期格式化函数
 export function formatDate(date, fmt) {
   //获取年份
   if (/(y+)/.test(fmt)) {

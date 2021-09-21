@@ -31,7 +31,7 @@ export default {
     }
   },
   methods:{
-    //1.防抖处理: 分别发送图片加载完成的事件
+    //1.通过事件总线实现任意组件之间的通信: 分别发送图片加载完成的事件到首页与详情页
     imageLoad(){
       if(this.$route.path.indexOf('/home')){
         this.$bus.$emit('homeImageLoad')

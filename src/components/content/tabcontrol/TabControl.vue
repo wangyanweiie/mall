@@ -20,6 +20,7 @@ export default {
   },
   data(){
     return{
+      //默认选中流行分类显示
       currentIndex: 0
     }
   },

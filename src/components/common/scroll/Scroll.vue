@@ -29,14 +29,15 @@ export default {
       scroll: null
     }
   },
+  //使用组件时传入是否需要监听滚动位置与上拉加载事件;
   props:{
     probeTybe: {
       type: Number,
-      default: 0      //是否监听滚动位置 默认否
+      default: 0      //是否监听滚动位置:默认否
     },
     pullUpLoad:{
       type: Boolean,
-      default: false  //是否上拉加载 默认否
+      default: false  //是否上拉加载:默认否
     }
   },
   mounted(){
@@ -64,14 +65,15 @@ export default {
     }
   },
   methods: {
-    scrollTo(x, y,time) {
-      //先判断scroll是否已经挂载完成,挂载完成调用scrollTo方法: 返回到某个位置
+    //需要先判断scroll是否已经挂载完成,挂载完成调用内置的scrollTo方法:返回到某个位置;
+    scrollTo(x,y,time) {
       this.scroll && this.scroll.scrollTo(x,y,time);
     },
+    //finishPullUp方法:完成上拉加载,告诉BS为下一次上拉加载作准备;
     finishPullUp(){
-      //finishPullUp方法:完成上拉加载,告诉BS为下一次上拉加载作准备;
       this.scroll && this.scroll.finishPullUp();
     },
+    //可以在页面图片加载完成后重新更新scroll提供的位置信息;
     refresh(){
       this.scroll && this.scroll.refresh();
     },
