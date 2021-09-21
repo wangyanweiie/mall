@@ -28,10 +28,10 @@ export default {
     Scroll,
   },
   computed:{
-    //mapGetters辅助函数: 可以将store实例中的getters映射到组件的计算属性computed中;
+    //mapGetters辅助函数: 可以将store实例中的getters映射到组件的计算属性computed中直接使用;
     ...mapGetters(['cartLength']),
   },
-  //加入商品后需要重新计算可滚动区域高度
+  //购物车中加入商品后需要重新计算可滚动区域高度
   activated(){
     this.$refs.scroll.refresh();
   }
