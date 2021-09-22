@@ -162,7 +162,7 @@ export default {
       //修改state需要通过mutations,不能直接修改state的值,而当存在异步与逻辑判断时又需要先经过 actions;
       //this.$store.cartList.push(product);     xxx
       //this.$store.commit("addCart",product);  xxx
-      //this.$store.dispatch("addCart",product).then(res => this.$toast.show(res));  √√
+      //this.$store.dispatch("addCart",product).then(res => this.$toast.show(res));
       this.addCart(product).then(res => this.$toast.show(res));
     }
   }

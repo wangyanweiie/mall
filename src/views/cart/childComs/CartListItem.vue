@@ -36,7 +36,7 @@ export default {
   methods: {
     checkedChange(){
       //商品是否选中的状态应该在vuex模型中记录 !! 不能简单地在组件中设置一个属性记录
-      //即点击加入购物车确定是新添加的商品时直接设置默认是否选中;
+      //即点击加入购物车确定新添加的商品默认是否选中;
       this.product.checked = !this.product.checked;
     }
   }
